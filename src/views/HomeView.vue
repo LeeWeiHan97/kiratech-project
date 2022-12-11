@@ -2,16 +2,16 @@
 	import axios from 'axios'
 	import RefreshIcon from '../assets/refresh.png'
 	import { computed } from "vue";
+	import router from '@/router';
 
 
 	export default {
 		name: 'HomeView',
-
 		data() {
 			return {
 				originalUserList: [],
 				userList: [],
-				search: ""
+				search: "",
 			}
 		},
 
@@ -20,7 +20,6 @@
 				axios
 					.get('https://randomuser.me/api/?results=20')
 					.then(async response => {
-						console.log(response.data.results)
 						this.originalUserList = computed(() => response.data.results)
 						this.userList = computed(() => response.data.results)
 					})
@@ -36,8 +35,10 @@
 				}
 
 				let filteredList = []
-				for (var user of this.userList) {
-					if (user.name.first.toLowerCase().includes(search) || user.name.last.toLowerCase().includes(search)) {
+				for (var user of this.originalUserList) {
+					// searches through first name, last name, and email
+					let fullName = user.name.first + " " + user.name.last
+					if (fullName.toLowerCase().includes(search.toLowerCase().trim()) || user.email.toLowerCase().includes(search.toLowerCase().trim())) {
 						filteredList.push(user)
 					}
 				}
@@ -73,10 +74,24 @@
 
 							this.userList.map((user) => {
 								return (
-									<div class="userDiv" onClick={()=>{}}>
+									<div class="userDiv">
 										<img class="userImage" src={user.picture.medium} alt={user.name.first} />
 										
-										<div class="userDetailsDiv">
+										<div class="userDetailsDiv" onClick={() => {
+											this.$router.push({ 
+												name: "user",
+												query: {
+													firstName: user.name.first,
+													lastName: user.name.last,
+													image: user.picture.large,
+													gender: user.gender,
+													country: user.location.country,
+													email: user.email,
+													cell: user.cell,
+													phone: user.phone
+												}
+											})
+										}}>
 											<div class="userSubDiv">
 												<span class="userSpan">Name:</span> {user.name.title} {user.name.first} {user.name.last}
 											</div>

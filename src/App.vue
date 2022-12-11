@@ -5,7 +5,12 @@
 <style>
 body {
   background-color: rgb(224, 224, 224);
-  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar { 
+  display: none;
 }
 
 #app {
@@ -42,7 +47,7 @@ nav a.router-link-exact-active {
 
 @media (min-width: 600px) {
 	.mainDiv {
-		width: 50vw;
+		width: 70vw;
 	}
 }
 
@@ -143,5 +148,77 @@ nav a.router-link-exact-active {
 	.overflowDiv {
     max-width: 400px;
   }
+}
+
+.tableImageContainer {
+  display: flex;
+  width: 100%;
+  margin-top: 25px;
+  justify-content: center;
+}
+
+.userImageLarge {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  background-color: white;
+  border: 1px solid rgb(209, 207, 207);
+}
+
+.userTable {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+}
+
+@media (min-width: 600px) {
+	.userTable {
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 992px) {
+	.userTable {
+    font-size: 1.1em;
+  }
+}
+
+.tableRow {
+  text-align: left;
+  line-height: 1.5em;
+}
+
+.tableHeader {
+  width: 40%;
+  font-weight: bold;
+  padding-left: 15px;
+}
+
+.tableDescription {
+  width: 100%;
+  padding-right: 15px;
+}
+
+.backButton {
+  padding: 5px 10px;
+  font-weight: bold;
+	cursor: pointer;
+	border-radius: 6px;
+	border: none;
+	line-height: 1.5;
+	color: white;
+	background-color: #26be3a;
+	-webkit-transition: all 0.25s;
+	-moz-transition: all 0.25s;
+	-ms-transition: all 0.25s;
+	-o-transition: all 0.25s;
+	transition: all 0.25s;
+}
+
+.backButton:active,
+.backButton:hover {
+    background-color: #019e0e;
+    outline: none;
 }
 </style>
