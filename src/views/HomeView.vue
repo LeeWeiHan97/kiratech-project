@@ -25,6 +25,7 @@
 					})
 			},
 
+			// Search function to filter through user list
 			filterUserList(search) {
 				this.search = computed(() => search)
 
