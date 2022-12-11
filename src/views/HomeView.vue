@@ -16,6 +16,7 @@
 		},
 
 		methods: {
+			// gets a list of 20 users from the given api
 			getUser() {
 				axios
 					.get('https://randomuser.me/api/?results=20')
@@ -48,6 +49,7 @@
 			}
 		},
 
+		// gets uesr list each time the page is mounted
 		beforeMount() {
 			this.getUser()
 		},
